@@ -164,8 +164,179 @@
             transform: translateY(-3px);
         }
 
+        /* Sección de Descargas */
+        .downloads { padding: 80px 0; text-align: center; max-width: 1000px; margin: 0 auto; }
+        .downloads h2 { font-weight: 900; font-size: 3rem; margin-bottom: 20px; letter-spacing: -1.5px; }
+        .downloads p.subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .download-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .download-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 15px 35px rgba(0, 176, 255, 0.15);
+        }
+
+        .download-card .card-content {
+            margin-bottom: 25px;
+        }
+
+        .download-card h3 {
+            font-weight: 900;
+            font-size: 1.4rem;
+            margin: 15px 0 10px 0;
+            color: var(--text-main);
+        }
+
+        .download-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .download-icon {
+            font-size: 2.2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-purple);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--text-main);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn-download:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: scale(1.03);
+        }
+
+        .btn-download svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-download:hover svg {
+            transform: translateY(2px);
+        }
+
+        .instruction-box {
+            margin-top: 60px;
+            background: rgba(232, 222, 248, 0.3);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: left;
+            border: 2px dashed var(--accent-purple);
+        }
+
+        .instruction-box h4 {
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .instruction-steps {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .instruction-steps li {
+            position: relative;
+            padding-left: 35px;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        .instruction-steps li strong {
+            color: var(--text-main);
+        }
+
+        .instruction-steps li::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 24px;
+            height: 24px;
+            background: var(--text-main);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Ajustes de responsividad para Tablets (hasta 1024px) */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.5rem; }
+            .playlist-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .phone-mockup {
+                width: 300px;
+                height: 533px;
+            }
+            .video-list {
+                max-height: 400px;
+            }
+            .features {
+                gap: 25px;
+                padding: 60px 0;
+            }
+            .feature-card {
+                padding: 35px;
+            }
+            .downloads, .tutorials {
+                padding: 60px 0;
+            }
+        }
+
+        /* Ajustes de responsividad para Móviles (hasta 768px) */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
+            header { padding: 25px 0; }
+            .hero { padding: 40px 0; }
+            .hero h1 { font-size: 2.8rem; letter-spacing: -1px; }
+            .hero p { font-size: 1.1rem; margin-bottom: 30px; }
+            .btn-main { padding: 16px 32px; font-size: 1.1rem; }
             .features { grid-template-columns: 1fr; }
             .tutorials h2 { font-size: 2.2rem; }
             .tutorials { padding: 40px 0; }
@@ -180,6 +351,25 @@
             .video-list {
                 max-height: none;
             }
+            .downloads h2 { font-size: 2.2rem; }
+            .downloads { padding: 40px 0; }
+            .download-grid { grid-template-columns: 1fr; gap: 20px; }
+            .instruction-box { padding: 25px; margin-top: 40px; }
+        }
+
+        /* Ajustes de responsividad para Móviles Pequeños (hasta 480px) */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .feature-card { padding: 30px 20px; }
+            .feature-card h3 { font-size: 1.4rem; }
+            .download-card { padding: 30px 20px; }
+            .download-card h3 { font-size: 1.25rem; }
+            .instruction-box h4 { font-size: 1.25rem; }
+            .instruction-steps li { font-size: 0.95rem; padding-left: 30px; }
+            .instruction-steps li::before { width: 20px; height: 20px; font-size: 0.75rem; top: 3px; }
+            .legal-section { padding: 60px 0; }
+            .legal-content h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -250,6 +440,55 @@
             
             <div style="margin-top: 40px; text-align: center;">
                 <a href="https://www.youtube.com/playlist?list=PL-GYdcT9QQVgL1qAisdWuvjFUSwDtByws" class="btn-secondary" target="_blank" rel="noopener noreferrer">Ver lista completa en YouTube</a>
+            </div>
+        </section>
+
+        <section class="downloads">
+            <h2>Recetarios de Ejemplo</h2>
+            <p class="subtitle">Descarga colecciones de recetas listas para importar directamente en tu aplicación y empezar a cocinar en segundos.</p>
+            
+            <div class="download-grid">
+                <div class="download-card">
+                    <div class="card-content">
+                        <div class="download-icon">🥟</div>
+                        <h3>Empanada de atún tradicional gallega</h3>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1Jhdfz59v-9DIGHGzzVpy86-hDzCBdK8q/view?usp=drive_link" class="btn-download" target="_blank" rel="noopener noreferrer">
+                        <span>Descargar JSON</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    </a>
+                </div>
+
+                <div class="download-card">
+                    <div class="card-content">
+                        <div class="download-icon">🥩</div>
+                        <h3>Lomo de cerdo marinado con cítricos con espárragos de abril a la plancha</h3>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1MY0vJdCYP7woADKL_d1KY1NApv5M5J__/view?usp=drive_link" class="btn-download" target="_blank" rel="noopener noreferrer">
+                        <span>Descargar JSON</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    </a>
+                </div>
+
+                <div class="download-card">
+                    <div class="card-content">
+                        <div class="download-icon">🥘</div>
+                        <h3>Cerdo agridulce tradicional con control térmico v.2</h3>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1yiwnNBU0BZbC6QhDrS2uo3aW30uOrO7A/view?usp=drive_link" class="btn-download" target="_blank" rel="noopener noreferrer">
+                        <span>Descargar JSON</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="instruction-box">
+                <h4>¿Cómo importar las recetas en la aplicación?</h4>
+                <ul class="instruction-steps">
+                    <li data-step="1"><strong>Descarga el archivo:</strong> Pulsa sobre cualquiera de las colecciones de arriba y guarda el archivo JSON en tu dispositivo (Google Drive abrirá el archivo, haz clic en descargar en la esquina superior derecha).</li>
+                    <li data-step="2"><strong>Abre la aplicación:</strong> Ve a la pantalla principal de <em>Cocina con IA</em>.</li>
+                    <li data-step="3"><strong>Ve a Opciones e Importa:</strong> Abre la pestaña <strong>Opciones</strong>, pulsa en <strong>Importar copia de seguridad</strong>, selecciona tu archivo JSON descargado y ¡listo!</li>
+                </ul>
             </div>
         </section>
 
