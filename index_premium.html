@@ -493,11 +493,9 @@
         </section>
 
         <script>
-            // Lista de reproducción de tutoriales de YouTube
-            // PARA AÑADIR MÁS VÍDEOS EN EL FUTURO:
-            // Simplemente añade una línea al final de esta lista con el formato: { id: 'ID_DEL_VÍDEO', title: 'Título del vídeo' }
-            const playlist = [
-                { id: 'PoBBcZx6hvo', title: 'Cómo crear una receta' },
+            // Lista de reproducción predeterminada (fallback) con los videotutoriales actualizados
+            let playlist = [
+                { id: 'APOahJj_M9M', title: 'Cómo crear una receta' },
                 { id: 'g2TgNf5-0nI', title: 'Pestaña opciones' },
                 { id: 'ZLe5Gpx69iE', title: 'Organización de la semana, compra y almacenaje' }
             ];
@@ -551,8 +549,26 @@
                 }
             }
 
-            // Inicializar la carga cuando el DOM esté listo
-            document.addEventListener('DOMContentLoaded', renderPlaylist);
+            // Cargar la lista dinámicamente desde el feed de YouTube sin CORS
+            async function fetchDynamicPlaylist() {
+                try {
+                    const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fplaylist_id%3DPL-GYdcT9QQVgL1qAisdWuvjFUSwDtByws');
+                    const data = await response.json();
+                    if (data.status === 'ok' && Array.isArray(data.items) && data.items.length > 0) {
+                        playlist = data.items.map(item => {
+                            const id = item.guid ? item.guid.replace('yt:video:', '') : (item.link ? item.link.split('v=')[1] : '');
+                            return { id, title: item.title.trim() };
+                        }).filter(video => video.id);
+                    }
+                } catch (error) {
+                    console.warn('No se pudo cargar la lista dinámica de YouTube, usando copia local:', error);
+                } finally {
+                    renderPlaylist();
+                }
+            }
+
+            // Inicializar la carga dinámica cuando el DOM esté listo
+            document.addEventListener('DOMContentLoaded', fetchDynamicPlaylist);
         </script>
     </div>
 
