@@ -304,6 +304,139 @@
             font-weight: bold;
         }
 
+        /* Sección de Directos */
+        .streams { padding: 80px 0; text-align: center; max-width: 1000px; margin: 0 auto; }
+        .streams h2 { font-weight: 900; font-size: 3rem; margin-bottom: 20px; letter-spacing: -1.5px; }
+        .streams p.subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
+        
+        .streams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .stream-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 35px 30px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .stream-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 15px 35px rgba(255, 145, 0, 0.1);
+        }
+
+        .stream-badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(255, 145, 0, 0.1);
+            color: var(--accent-orange);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-orange);
+            border-radius: 50%;
+            animation: pulse-animation 1.5s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 145, 0, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 145, 0, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 145, 0, 0); }
+        }
+
+        .stream-date {
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stream-card h3 {
+            font-weight: 900;
+            font-size: 1.4rem;
+            margin: 10px 0;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .stream-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .stream-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-stream-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--text-main);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-stream-link:hover {
+            background: var(--accent-orange);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .btn-calendar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--text-main);
+            border: 2px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-calendar:hover {
+            border-color: var(--text-main);
+            background: #f8f8f8;
+        }
+
         /* Ajustes de responsividad para Tablets (hasta 1024px) */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3.5rem; }
@@ -325,7 +458,7 @@
             .feature-card {
                 padding: 35px;
             }
-            .downloads, .tutorials {
+            .downloads, .tutorials, .streams {
                 padding: 60px 0;
             }
         }
@@ -352,7 +485,9 @@
                 max-height: none;
             }
             .downloads h2 { font-size: 2.2rem; }
-            .downloads { padding: 40px 0; }
+            .downloads, .streams { padding: 40px 0; }
+            .streams h2 { font-size: 2.2rem; }
+            .streams-grid { grid-template-columns: 1fr; gap: 20px; }
             .download-grid { grid-template-columns: 1fr; gap: 20px; }
             .instruction-box { padding: 25px; margin-top: 40px; }
         }
@@ -365,6 +500,8 @@
             .feature-card h3 { font-size: 1.4rem; }
             .download-card { padding: 30px 20px; }
             .download-card h3 { font-size: 1.25rem; }
+            .stream-card { padding: 30px 20px; }
+            .stream-card h3 { font-size: 1.25rem; }
             .instruction-box h4 { font-size: 1.25rem; }
             .instruction-steps li { font-size: 0.95rem; padding-left: 30px; }
             .instruction-steps li::before { width: 20px; height: 20px; font-size: 0.75rem; top: 3px; }
@@ -419,6 +556,101 @@
                 <div class="icon-box">💰</div>
                 <h3>Ahorro Real</h3>
                 <p>Optimiza tu presupuesto de alimentación semanal aprovechando los ingredientes que ya tienes en casa y comprando con inteligencia.</p>
+            </div>
+        </section>
+
+        <section class="streams">
+            <h2>Próximas Recetas en Directo</h2>
+            <p class="subtitle">Acompaña a nuestro chef en vivo, aprende trucos únicos y cocina con nosotros en tiempo real.</p>
+            
+            <div class="streams-grid">
+                <div class="stream-card">
+                    <div class="stream-badge">
+                        <div class="pulse-dot"></div>
+                        <span>MAÑANA</span>
+                    </div>
+                    <div>
+                        <div class="stream-date">Domingo, 7 de Junio</div>
+                        <h3>Saltimbocca de Pollo con Emulsión de Mantequilla</h3>
+                        <p>Prepara esta deliciosa variante del clásico italiano con pechugas tiernas, jamón serrano, salvia y una emulsión sedosa.</p>
+                    </div>
+                    <div class="stream-actions">
+                        <a href="https://instagram.com" class="btn-stream-link" target="_blank" rel="noopener noreferrer">
+                            <span>Ir al Directo (Instagram)</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Saltimbocca+de+Pollo&dates=20260607/20260608&details=Aprende+a+preparar+Saltimbocca+de+pechuga+de+pollo+con+emulsión+de+mantequilla+en+vivo.+Cocina+con+IA.&location=Instagram+Live" class="btn-calendar" target="_blank" rel="noopener noreferrer">
+                            <span>Añadir a Google Calendar</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="stream-card">
+                    <div class="stream-badge">
+                        <div class="pulse-dot"></div>
+                        <span>MAÑANA</span>
+                    </div>
+                    <div>
+                        <div class="stream-date">Domingo, 7 de Junio</div>
+                        <h3>Patatas Bravas Tradicionales</h3>
+                        <p>El secreto de la salsa brava tradicional sin tomate, elaborada con caldo, pimentón de la Vera y un toque picante ideal.</p>
+                    </div>
+                    <div class="stream-actions">
+                        <a href="https://twitch.tv" class="btn-stream-link" target="_blank" rel="noopener noreferrer">
+                            <span>Ir al Directo (Twitch)</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Patatas+Bravas+Tradicionales&dates=20260607/20260608&details=El+secreto+de+la+salsa+brava+tradicional+con+salsa+de+pimentón+en+vivo.+Cocina+con+IA.&location=Twitch+Live" class="btn-calendar" target="_blank" rel="noopener noreferrer">
+                            <span>Añadir a Google Calendar</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="stream-card">
+                    <div class="stream-badge">
+                        <div class="pulse-dot"></div>
+                        <span>PRÓXIMAMENTE</span>
+                    </div>
+                    <div>
+                        <div class="stream-date">Miércoles, 10 de Junio</div>
+                        <h3>Arroz Frito con Cerdo y Verduras al Wok</h3>
+                        <p>Técnicas avanzadas de salteado para conseguir un arroz frito suelto y aromático con tierna carne y verduras crujientes.</p>
+                    </div>
+                    <div class="stream-actions">
+                        <a href="https://youtube.com" class="btn-stream-link" target="_blank" rel="noopener noreferrer">
+                            <span>Ir al Directo (YouTube)</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Arroz+Frito+al+Wok&dates=20260610/20260611&details=Aprende+a+saltear+arroz+frito+con+carne+de+cerdo+y+verduras+al+wok.+Cocina+con+IA.&location=YouTube+Live" class="btn-calendar" target="_blank" rel="noopener noreferrer">
+                            <span>Añadir a Google Calendar</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="stream-card">
+                    <div class="stream-badge">
+                        <div class="pulse-dot"></div>
+                        <span>PRÓXIMAMENTE</span>
+                    </div>
+                    <div>
+                        <div class="stream-date">Viernes, 12 de Junio</div>
+                        <h3>Pasta Carbonara Tradicional</h3>
+                        <p>Domina la receta auténtica romana sin nata: cremosidad a base de yema de huevo, Pecorino Romano y crujiente guanciale.</p>
+                    </div>
+                    <div class="stream-actions">
+                        <a href="https://instagram.com" class="btn-stream-link" target="_blank" rel="noopener noreferrer">
+                            <span>Ir al Directo (Instagram)</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        </a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Pasta+Carbonara+Tradicional&dates=20260612/20260613&details=Receta+romana+original+de+pasta+carbonara.+Cocina+con+IA.&location=Instagram+Live" class="btn-calendar" target="_blank" rel="noopener noreferrer">
+                            <span>Añadir a Google Calendar</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
