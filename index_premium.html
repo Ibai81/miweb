@@ -437,6 +437,148 @@
             background: #f8f8f8;
         }
 
+        /* Sección de Recetas Anteriores */
+        .past-recipes { padding: 40px 0 80px 0; text-align: center; }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.open .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: #eee;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--text-main);
+            color: white;
+        }
+
+        .modal-card h2 {
+            font-weight: 900;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            padding-right: 40px;
+        }
+
+        .modal-card p.intro {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        /* Agrupación por semanas */
+        .week-group {
+            margin-bottom: 30px;
+        }
+
+        .week-title {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent-purple);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .past-recipe-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .past-recipe-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f8f8;
+            padding: 12px 20px;
+            border-radius: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .past-recipe-item:hover {
+            background: #f0f0f0;
+        }
+
+        .past-recipe-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .past-recipe-download {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .past-recipe-download:hover {
+            color: var(--text-main);
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
         /* Ajustes de responsividad para Tablets (hasta 1024px) */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3.5rem; }
@@ -575,11 +717,7 @@
                         <p>Prepara esta deliciosa variante del clásico italiano con pechugas tiernas, jamón serrano, salvia y una emulsión sedosa.</p>
                     </div>
                     <div class="stream-actions">
-                        <a href="https://instagram.com" class="btn-stream-link" target="_blank" rel="noopener noreferrer">
-                            <span>Ir al Directo (Instagram)</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                        </a>
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Saltimbocca+de+Pollo&dates=20260607/20260608&details=Aprende+a+preparar+Saltimbocca+de+pechuga+de+pollo+con+emulsión+de+mantequilla+en+vivo.+Cocina+con+IA.&location=Instagram+Live" class="btn-calendar" target="_blank" rel="noopener noreferrer">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Saltimbocca+de+Pollo&dates=20260607/20260608&details=Aprende+a+preparar+Saltimbocca+de+pechuga+de+pollo+con+emulsión+de+mantequilla+en+vivo.+Cocina+con+IA." class="btn-calendar" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: center; width: 100%;">
                             <span>Añadir a Google Calendar</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </a>
@@ -597,11 +735,7 @@
                         <p>El secreto de la salsa brava tradicional sin tomate, elaborada con caldo, pimentón de la Vera y un toque picante ideal.</p>
                     </div>
                     <div class="stream-actions">
-                        <a href="https://twitch.tv" class="btn-stream-link" target="_blank" rel="noopener noreferrer">
-                            <span>Ir al Directo (Twitch)</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                        </a>
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Patatas+Bravas+Tradicionales&dates=20260607/20260608&details=El+secreto+de+la+salsa+brava+tradicional+con+salsa+de+pimentón+en+vivo.+Cocina+con+IA.&location=Twitch+Live" class="btn-calendar" target="_blank" rel="noopener noreferrer">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Patatas+Bravas+Tradicionales&dates=20260607/20260608&details=El+secreto+de+la+salsa+brava+tradicional+con+salsa+de+pimentón+en+vivo.+Cocina+con+IA." class="btn-calendar" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: center; width: 100%;">
                             <span>Añadir a Google Calendar</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </a>
@@ -619,11 +753,7 @@
                         <p>Técnicas avanzadas de salteado para conseguir un arroz frito suelto y aromático con tierna carne y verduras crujientes.</p>
                     </div>
                     <div class="stream-actions">
-                        <a href="https://youtube.com" class="btn-stream-link" target="_blank" rel="noopener noreferrer">
-                            <span>Ir al Directo (YouTube)</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                        </a>
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Arroz+Frito+al+Wok&dates=20260610/20260611&details=Aprende+a+saltear+arroz+frito+con+carne+de+cerdo+y+verduras+al+wok.+Cocina+con+IA.&location=YouTube+Live" class="btn-calendar" target="_blank" rel="noopener noreferrer">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Arroz+Frito+al+Wok&dates=20260610/20260611&details=Aprende+a+saltear+arroz+frito+con+carne+de+cerdo+y+verduras+al+wok.+Cocina+con+IA." class="btn-calendar" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: center; width: 100%;">
                             <span>Añadir a Google Calendar</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </a>
@@ -641,17 +771,19 @@
                         <p>Domina la receta auténtica romana sin nata: cremosidad a base de yema de huevo, Pecorino Romano y crujiente guanciale.</p>
                     </div>
                     <div class="stream-actions">
-                        <a href="https://instagram.com" class="btn-stream-link" target="_blank" rel="noopener noreferrer">
-                            <span>Ir al Directo (Instagram)</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                        </a>
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Pasta+Carbonara+Tradicional&dates=20260612/20260613&details=Receta+romana+original+de+pasta+carbonara.+Cocina+con+IA.&location=Instagram+Live" class="btn-calendar" target="_blank" rel="noopener noreferrer">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Pasta+Carbonara+Tradicional&dates=20260612/20260613&details=Receta+romana+original+de+pasta+carbonara.+Cocina+con+IA." class="btn-calendar" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: center; width: 100%;">
                             <span>Añadir a Google Calendar</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </a>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section class="past-recipes">
+            <button class="btn-secondary" onclick="openPastRecipesModal()">
+                <span>📚 Ver Recetas de Directos Anteriores</span>
+            </button>
         </section>
 
         <section class="tutorials">
@@ -846,6 +978,73 @@
             &copy; 2026 Cocina con IA. Todos los derechos reservados.
         </div>
     </footer>
+
+
+    <!-- Modal: Recetas Anteriores -->
+    <div id="past-recipes-modal" class="modal-overlay" onclick="handleModalOverlayClick(event)">
+        <div class="modal-card" id="past-recipes-card">
+            <button class="modal-close" onclick="closePastRecipesModal()" aria-label="Cerrar">&#x2715;</button>
+            <h2>📚 Recetas Anteriores</h2>
+            <p class="intro">Todas las recetas cocinadas en directo, agrupadas por semana. ¡Descárgalas y ponlas en práctica!</p>
+
+            <!-- Semana 1 -->
+            <div class="week-group">
+                <div class="week-title">
+                    <span>📅</span> Semana del 2 al 6 de junio de 2025
+                </div>
+                <ul class="past-recipe-list">
+                    <li class="past-recipe-item">
+                        <span class="past-recipe-name">🍗 Saltimbocca de pechuga de pollo con emulsión de mantequilla</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1zvunfJY0EMUTodxIROxEgV-nUpHG_dcL/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                            📄 Ver receta
+                        </a>
+                    </li>
+                    <li class="past-recipe-item">
+                        <span class="past-recipe-name">🥔 Patatas bravas tradicional con salsa de pimentón</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1_bK131EeKCdbM8nDlEi1BQgF3UpdSFNJ/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                            📄 Ver receta
+                        </a>
+                    </li>
+                    <li class="past-recipe-item">
+                        <span class="past-recipe-name">🍚 Arroz frito con carne de cerdo y verduras al Wok</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1kuRNsQMLAWSiLErqz27hOUvnUkC4wbd3/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                            📄 Ver receta
+                        </a>
+                    </li>
+                    <li class="past-recipe-item">
+                        <span class="past-recipe-name">🍝 Pasta carbonara tradicional</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1nDrH5zc-nMXsQHCSTiNchrDvJxgSkgVr/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                            📄 Ver receta
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPastRecipesModal() {
+            const modal = document.getElementById('past-recipes-modal');
+            modal.classList.add('open');
+            document.body.classList.add('modal-open');
+        }
+
+        function closePastRecipesModal() {
+            const modal = document.getElementById('past-recipes-modal');
+            modal.classList.remove('open');
+            document.body.classList.remove('modal-open');
+        }
+
+        function handleModalOverlayClick(event) {
+            if (event.target === document.getElementById('past-recipes-modal')) {
+                closePastRecipesModal();
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePastRecipesModal();
+        });
+    </script>
 
 </body>
 </html>

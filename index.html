@@ -437,6 +437,148 @@
             background: #f8f8f8;
         }
 
+        /* Sección de Recetas Anteriores */
+        .past-recipes { padding: 40px 0 80px 0; text-align: center; }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.open .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: #eee;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--text-main);
+            color: white;
+        }
+
+        .modal-card h2 {
+            font-weight: 900;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            padding-right: 40px;
+        }
+
+        .modal-card p.intro {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        /* Agrupación por semanas */
+        .week-group {
+            margin-bottom: 30px;
+        }
+
+        .week-title {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent-purple);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .past-recipe-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .past-recipe-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f8f8;
+            padding: 12px 20px;
+            border-radius: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .past-recipe-item:hover {
+            background: #f0f0f0;
+        }
+
+        .past-recipe-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .past-recipe-download {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .past-recipe-download:hover {
+            color: var(--text-main);
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
         /* Ajustes de responsividad para Tablets (hasta 1024px) */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3.5rem; }
@@ -846,6 +988,72 @@
             &copy; 2026 Cocina con IA. Todos los derechos reservados.
         </div>
     </footer>
+
+    <!-- Modal: Recetas Anteriores -->
+    <div id="past-recipes-modal" class="modal-overlay" onclick="handleModalOverlayClick(event)">
+        <div class="modal-card" id="past-recipes-card">
+            <button class="modal-close" onclick="closePastRecipesModal()" aria-label="Cerrar">&#x2715;</button>
+            <h2>📚 Recetas Anteriores</h2>
+            <p class="intro">Todas las recetas cocinadas en directo, agrupadas por semana. ¡Descárgalas y ponlas en práctica!</p>
+
+            <!-- Semana 1 -->
+            <div class="week-group">
+                <div class="week-title">
+                    <span>📅</span> Semana del 2 al 6 de junio de 2025
+                </div>
+                <ul class="past-recipe-list">
+                    <li class="past-recipe-item">
+                        <span class="past-recipe-name">🍗 Saltimbocca de pechuga de pollo con emulsión de mantequilla</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1zvunfJY0EMUTodxIROxEgV-nUpHG_dcL/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                            📄 Ver receta
+                        </a>
+                    </li>
+                    <li class="past-recipe-item">
+                        <span class="past-recipe-name">🥔 Patatas bravas tradicional con salsa de pimentón</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1_bK131EeKCdbM8nDlEi1BQgF3UpdSFNJ/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                            📄 Ver receta
+                        </a>
+                    </li>
+                    <li class="past-recipe-item">
+                        <span class="past-recipe-name">🍚 Arroz frito con carne de cerdo y verduras al Wok</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1kuRNsQMLAWSiLErqz27hOUvnUkC4wbd3/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                            📄 Ver receta
+                        </a>
+                    </li>
+                    <li class="past-recipe-item">
+                        <span class="past-recipe-name">🍝 Pasta carbonara tradicional</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1nDrH5zc-nMXsQHCSTiNchrDvJxgSkgVr/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                            📄 Ver receta
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPastRecipesModal() {
+            const modal = document.getElementById('past-recipes-modal');
+            modal.classList.add('open');
+            document.body.classList.add('modal-open');
+        }
+
+        function closePastRecipesModal() {
+            const modal = document.getElementById('past-recipes-modal');
+            modal.classList.remove('open');
+            document.body.classList.remove('modal-open');
+        }
+
+        function handleModalOverlayClick(event) {
+            if (event.target === document.getElementById('past-recipes-modal')) {
+                closePastRecipesModal();
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePastRecipesModal();
+        });
+    </script>
 
 </body>
 </html>
