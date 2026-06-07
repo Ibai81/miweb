@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <script src="assets/i18n.js"></script>
     <style>
         :root {
             --bg-color: #F2F2F2;
@@ -29,6 +30,10 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
         header { padding: 40px 0; display: flex; align-items: center; justify-content: space-between; }
+        .lang-switcher { display: flex; gap: 4px; background: var(--card-bg); padding: 4px; border-radius: 50px; box-shadow: var(--shadow); }
+        .lang-btn { border: none; background: transparent; padding: 8px 14px; border-radius: 50px; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 0.85rem; color: var(--text-muted); transition: all 0.2s ease; }
+        .lang-btn.active { background: var(--text-main); color: white; }
+        .lang-btn:hover:not(.active) { background: rgba(0,0,0,0.05); color: var(--text-main); }
         .logo-area { display: flex; align-items: center; gap: 15px; }
         .logo-img { width: 60px; height: 60px; border-radius: 15px; box-shadow: var(--shadow); }
         .logo-text { font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px; }
@@ -616,7 +621,8 @@
 
         /* Ajustes de responsividad para Móviles (hasta 768px) */
         @media (max-width: 768px) {
-            header { padding: 25px 0; }
+            header { padding: 25px 0; flex-wrap: wrap; gap: 16px; }
+            .lang-btn { padding: 6px 11px; font-size: 0.8rem; }
             .hero { padding: 40px 0; }
             .hero h1 { font-size: 2.8rem; letter-spacing: -1px; }
             .hero p { font-size: 1.1rem; margin-bottom: 30px; }
@@ -667,63 +673,68 @@
         <header>
             <div class="logo-area">
                 <img src="assets/icon-512.png" alt="Logo" class="logo-img">
-                <span class="logo-text">Cocina con IA</span>
+                <span class="logo-text" data-i18n="header.logo">Cocina con IA</span>
             </div>
+            <nav class="lang-switcher" aria-label="Idioma / Language">
+                <button type="button" class="lang-btn active" data-lang="es" aria-label="Español" aria-pressed="true">ES</button>
+                <button type="button" class="lang-btn" data-lang="eu" aria-label="Euskera" aria-pressed="false">EU</button>
+                <button type="button" class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false">EN</button>
+            </nav>
         </header>
 
         <section class="hero">
-            <h1>Tu cocina,<br>más inteligente.</h1>
-            <p>Planifica tu semana, gestiona tu presupuesto y crea platos únicos con IA. Todo con una interfaz minimalista diseñada para tu día a día.</p>
-            <a href="https://play.google.com/apps/testing/com.iaipg.recetario" class="btn-main" target="_blank" rel="noopener noreferrer">Acceso anticipado</a>
+            <h1 data-i18n-html="hero.title">Tu cocina,<br>más inteligente.</h1>
+            <p data-i18n="hero.subtitle">Planifica tu semana, gestiona tu presupuesto y crea platos únicos con IA. Todo con una interfaz minimalista diseñada para tu día a día.</p>
+            <a href="https://play.google.com/apps/testing/com.iaipg.recetario" class="btn-main" target="_blank" rel="noopener noreferrer" data-i18n="hero.cta">Acceso anticipado</a>
         </section>
 
         <section class="features">
             <div class="feature-card">
                 <div class="icon-box">📅</div>
-                <h3>Organización de la Semana</h3>
-                <p>Planifica tus comidas de la semana de forma intuitiva seleccionando tus recetas favoritas para cada día. Controla tus menús y mantén tus hábitos equilibrados.</p>
+                <h3 data-i18n="features.f1.title">Organización de la Semana</h3>
+                <p data-i18n="features.f1.desc">Planifica tus comidas de la semana de forma intuitiva seleccionando tus recetas favoritas para cada día. Controla tus menús y mantén tus hábitos equilibrados.</p>
             </div>
             <div class="feature-card">
                 <div class="icon-box">🤖</div>
-                <h3>Magia con IA</h3>
-                <p>¿No sabes qué cocinar? Deja que la IA analice tu despensa, cree recetas creativas o importe platos desde fotos y texto al instante.</p>
+                <h3 data-i18n="features.f2.title">Magia con IA</h3>
+                <p data-i18n="features.f2.desc">¿No sabes qué cocinar? Deja que la IA analice tu despensa, cree recetas creativas o importe platos desde fotos y texto al instante.</p>
             </div>
             <div class="feature-card">
                 <div class="icon-box">🛒</div>
-                <h3>Cesta de la Compra</h3>
-                <p>Genera automáticamente tu lista de la compra sumando las cantidades de ingredientes de tu plan semanal para comprar exactamente lo necesario.</p>
+                <h3 data-i18n="features.f3.title">Cesta de la Compra</h3>
+                <p data-i18n="features.f3.desc">Genera automáticamente tu lista de la compra sumando las cantidades de ingredientes de tu plan semanal para comprar exactamente lo necesario.</p>
             </div>
             <div class="feature-card">
                 <div class="icon-box">📦</div>
-                <h3>Control de Almacenaje</h3>
-                <p>Lleva un inventario inteligente de tu despensa y congelador. Organiza tus ingredientes por zonas para evitar que caduquen y reducir desperdicios.</p>
+                <h3 data-i18n="features.f4.title">Control de Almacenaje</h3>
+                <p data-i18n="features.f4.desc">Lleva un inventario inteligente de tu despensa y congelador. Organiza tus ingredientes por zonas para evitar que caduquen y reducir desperdicios.</p>
             </div>
             <div class="feature-card">
                 <div class="icon-box">🍳</div>
-                <h3>Recetario Completo</h3>
-                <p>Crea, edita e importa tus recetas. Sigue los pasos cómodamente en la cocina utilizando temporizadores simultáneos incorporados.</p>
+                <h3 data-i18n="features.f5.title">Recetario Completo</h3>
+                <p data-i18n="features.f5.desc">Crea, edita e importa tus recetas. Sigue los pasos cómodamente en la cocina utilizando temporizadores simultáneos incorporados.</p>
             </div>
             <div class="feature-card">
                 <div class="icon-box">💰</div>
-                <h3>Ahorro Real</h3>
-                <p>Optimiza tu presupuesto de alimentación semanal aprovechando los ingredientes que ya tienes en casa y comprando con inteligencia.</p>
+                <h3 data-i18n="features.f6.title">Ahorro Real</h3>
+                <p data-i18n="features.f6.desc">Optimiza tu presupuesto de alimentación semanal aprovechando los ingredientes que ya tienes en casa y comprando con inteligencia.</p>
             </div>
         </section>
 
         <section class="streams">
-            <h2>Próximas Recetas en Directo</h2>
-            <p class="subtitle">Acompaña a nuestro chef en vivo, aprende trucos únicos y cocina con nosotros en tiempo real.</p>
+            <h2 data-i18n="streams.title">Próximas Recetas en Directo</h2>
+            <p class="subtitle" data-i18n="streams.subtitle">Acompaña a nuestro chef en vivo, aprende trucos únicos y cocina con nosotros en tiempo real.</p>
             
             <div class="streams-grid">
                 <div class="stream-card">
                     <div>
-                        <div class="stream-date">Domingo, 7 de Junio</div>
-                        <h3>Saltimbocca de Pollo con Emulsión de Mantequilla</h3>
-                        <p>Prepara esta deliciosa variante del clásico italiano con pechugas tiernas, jamón serrano, salvia y una emulsión sedosa.</p>
+                        <div class="stream-date" data-i18n="streams.s1.date">Domingo, 7 de Junio</div>
+                        <h3 data-i18n="streams.s1.title">Saltimbocca de Pollo con Emulsión de Mantequilla</h3>
+                        <p data-i18n="streams.s1.desc">Prepara esta deliciosa variante del clásico italiano con pechugas tiernas, jamón serrano, salvia y una emulsión sedosa.</p>
                     </div>
                     <div class="stream-actions">
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Saltimbocca+de+Pollo&dates=20260607/20260608&details=Aprende+a+preparar+Saltimbocca+de+pechuga+de+pollo+con+emulsión+de+mantequilla+en+vivo.+Cocina+con+IA." class="btn-calendar" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: center; width: 100%;">
-                            <span>Añadir a Google Calendar</span>
+                            <span data-i18n="streams.addCalendar">Añadir a Google Calendar</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </a>
                     </div>
@@ -731,13 +742,13 @@
 
                 <div class="stream-card">
                     <div>
-                        <div class="stream-date">Lunes, 8 de Junio</div>
-                        <h3>Patatas Bravas Tradicionales</h3>
-                        <p>El secreto de la salsa brava tradicional sin tomate, elaborada con caldo, pimentón de la Vera y un toque picante ideal.</p>
+                        <div class="stream-date" data-i18n="streams.s2.date">Lunes, 8 de Junio</div>
+                        <h3 data-i18n="streams.s2.title">Patatas Bravas Tradicionales</h3>
+                        <p data-i18n="streams.s2.desc">El secreto de la salsa brava tradicional sin tomate, elaborada con caldo, pimentón de la Vera y un toque picante ideal.</p>
                     </div>
                     <div class="stream-actions">
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Patatas+Bravas+Tradicionales&dates=20260608/20260609&details=El+secreto+de+la+salsa+brava+tradicional+con+salsa+de+pimentón+en+vivo.+Cocina+con+IA." class="btn-calendar" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: center; width: 100%;">
-                            <span>Añadir a Google Calendar</span>
+                            <span data-i18n="streams.addCalendar">Añadir a Google Calendar</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </a>
                     </div>
@@ -745,13 +756,13 @@
 
                 <div class="stream-card">
                     <div>
-                        <div class="stream-date">Miércoles, 10 de Junio</div>
-                        <h3>Arroz Frito con Cerdo y Verduras al Wok</h3>
-                        <p>Técnicas avanzadas de salteado para conseguir un arroz frito suelto y aromático con tierna carne y verduras crujientes.</p>
+                        <div class="stream-date" data-i18n="streams.s3.date">Miércoles, 10 de Junio</div>
+                        <h3 data-i18n="streams.s3.title">Arroz Frito con Cerdo y Verduras al Wok</h3>
+                        <p data-i18n="streams.s3.desc">Técnicas avanzadas de salteado para conseguir un arroz frito suelto y aromático con tierna carne y verduras crujientes.</p>
                     </div>
                     <div class="stream-actions">
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Arroz+Frito+al+Wok&dates=20260610/20260611&details=Aprende+a+saltear+arroz+frito+con+carne+de+cerdo+y+verduras+al+wok.+Cocina+con+IA." class="btn-calendar" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: center; width: 100%;">
-                            <span>Añadir a Google Calendar</span>
+                            <span data-i18n="streams.addCalendar">Añadir a Google Calendar</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </a>
                     </div>
@@ -759,13 +770,13 @@
 
                 <div class="stream-card">
                     <div>
-                        <div class="stream-date">Viernes, 12 de Junio</div>
-                        <h3>Pasta Carbonara Tradicional</h3>
-                        <p>Domina la receta auténtica romana sin nata: cremosidad a base de yema de huevo, Pecorino Romano y crujiente guanciale.</p>
+                        <div class="stream-date" data-i18n="streams.s4.date">Viernes, 12 de Junio</div>
+                        <h3 data-i18n="streams.s4.title">Pasta Carbonara Tradicional</h3>
+                        <p data-i18n="streams.s4.desc">Domina la receta auténtica romana sin nata: cremosidad a base de yema de huevo, Pecorino Romano y crujiente guanciale.</p>
                     </div>
                     <div class="stream-actions">
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Directo:+Pasta+Carbonara+Tradicional&dates=20260612/20260613&details=Receta+romana+original+de+pasta+carbonara.+Cocina+con+IA." class="btn-calendar" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: center; width: 100%;">
-                            <span>Añadir a Google Calendar</span>
+                            <span data-i18n="streams.addCalendar">Añadir a Google Calendar</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </a>
                     </div>
@@ -775,18 +786,18 @@
 
         <section class="past-recipes">
             <button class="btn-secondary" onclick="openPastRecipesModal()">
-                <span>📚 Ver Recetas de Directos Anteriores</span>
+                <span data-i18n="pastRecipes.btn">📚 Ver Recetas de Directos Anteriores</span>
             </button>
         </section>
 
         <section class="tutorials">
-            <h2>Aprende a dominar tu cocina</h2>
-            <p>Descubre cómo sacar el máximo partido a la aplicación con nuestros videotutoriales paso a paso.</p>
+            <h2 data-i18n="tutorials.title">Aprende a dominar tu cocina</h2>
+            <p data-i18n="tutorials.subtitle">Descubre cómo sacar el máximo partido a la aplicación con nuestros videotutoriales paso a paso.</p>
             
             <div class="playlist-container">
                 <!-- Columna izquierda: Reproductor móvil -->
                 <div class="phone-mockup">
-                    <iframe id="player-iframe" title="Reproductor de tutoriales" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe id="player-iframe" data-i18n-attr="title:tutorials.playerTitle" title="Reproductor de tutoriales" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 
                 <!-- Columna derecha: Lista de reproducción -->
@@ -796,22 +807,22 @@
             </div>
             
             <div style="margin-top: 40px; text-align: center;">
-                <a href="https://www.youtube.com/playlist?list=PL-GYdcT9QQVgL1qAisdWuvjFUSwDtByws" class="btn-secondary" target="_blank" rel="noopener noreferrer">Ver lista completa en YouTube</a>
+                <a href="https://www.youtube.com/playlist?list=PL-GYdcT9QQVgL1qAisdWuvjFUSwDtByws" class="btn-secondary" target="_blank" rel="noopener noreferrer" data-i18n="tutorials.youtube">Ver lista completa en YouTube</a>
             </div>
         </section>
 
         <section class="downloads">
-            <h2>Recetarios de Ejemplo</h2>
-            <p class="subtitle">Descarga colecciones de recetas listas para importar directamente en tu aplicación y empezar a cocinar en segundos.</p>
+            <h2 data-i18n="downloads.title">Recetarios de Ejemplo</h2>
+            <p class="subtitle" data-i18n="downloads.subtitle">Descarga colecciones de recetas listas para importar directamente en tu aplicación y empezar a cocinar en segundos.</p>
             
             <div class="download-grid">
                 <div class="download-card">
                     <div class="card-content">
                         <div class="download-icon">🍗</div>
-                        <h3>Saltimbocca de pechuga de pollo con emulsión de mantequilla</h3>
+                        <h3 data-i18n="downloads.r1">Saltimbocca de pechuga de pollo con emulsión de mantequilla</h3>
                     </div>
                     <a href="https://drive.google.com/file/d/1zvunfJY0EMUTodxIROxEgV-nUpHG_dcL/view?usp=drive_link" class="btn-download" target="_blank" rel="noopener noreferrer">
-                        <span>Descargar JSON</span>
+                        <span data-i18n="downloads.downloadBtn">Descargar JSON</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                     </a>
                 </div>
@@ -819,10 +830,10 @@
                 <div class="download-card">
                     <div class="card-content">
                         <div class="download-icon">🥔</div>
-                        <h3>Patatas bravas tradicional con salsa de pimentón</h3>
+                        <h3 data-i18n="downloads.r2">Patatas bravas tradicional con salsa de pimentón</h3>
                     </div>
                     <a href="https://drive.google.com/file/d/1_bK131EeKCdbM8nDlEi1BQgF3UpdSFNJ/view?usp=drive_link" class="btn-download" target="_blank" rel="noopener noreferrer">
-                        <span>Descargar JSON</span>
+                        <span data-i18n="downloads.downloadBtn">Descargar JSON</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                     </a>
                 </div>
@@ -830,10 +841,10 @@
                 <div class="download-card">
                     <div class="card-content">
                         <div class="download-icon">🥢</div>
-                        <h3>Arroz frito con carne de cerdo y verduras al Wok</h3>
+                        <h3 data-i18n="downloads.r3">Arroz frito con carne de cerdo y verduras al Wok</h3>
                     </div>
                     <a href="https://drive.google.com/file/d/1kuRNsQMLAWSiLErqz27hOUvnUkC4wbd3/view?usp=drive_link" class="btn-download" target="_blank" rel="noopener noreferrer">
-                        <span>Descargar JSON</span>
+                        <span data-i18n="downloads.downloadBtn">Descargar JSON</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                     </a>
                 </div>
@@ -841,21 +852,21 @@
                 <div class="download-card">
                     <div class="card-content">
                         <div class="download-icon">🍝</div>
-                        <h3>Pasta carbonara tradicional</h3>
+                        <h3 data-i18n="downloads.r4">Pasta carbonara tradicional</h3>
                     </div>
                     <a href="https://drive.google.com/file/d/1nDrH5zc-nMXsQHCSTiNchrDvJxgSkgVr/view?usp=drive_link" class="btn-download" target="_blank" rel="noopener noreferrer">
-                        <span>Descargar JSON</span>
+                        <span data-i18n="downloads.downloadBtn">Descargar JSON</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                     </a>
                 </div>
             </div>
 
             <div class="instruction-box">
-                <h4>¿Cómo importar las recetas en la aplicación?</h4>
+                <h4 data-i18n="instructions.title">¿Cómo importar las recetas en la aplicación?</h4>
                 <ul class="instruction-steps">
-                    <li data-step="1"><strong>Descarga el archivo:</strong> Pulsa sobre cualquiera de las colecciones de arriba y guarda el archivo JSON en tu dispositivo (Google Drive abrirá el archivo, haz clic en descargar en la esquina superior derecha).</li>
-                    <li data-step="2"><strong>Abre la aplicación:</strong> Ve a la pantalla principal de <em>Cocina con IA</em>.</li>
-                    <li data-step="3"><strong>Ve a Opciones e Importa:</strong> Abre la pestaña <strong>Opciones</strong>, pulsa en <strong>Importar copia de seguridad</strong>, selecciona tu archivo JSON descargado. <strong>¡Importante!</strong> No selecciones la opción de "pisar/sustituir" recetas si te lo pregunta, ya que esto borraría las que ya tienes guardadas en la aplicación (elige la opción de combinar/añadir).</li>
+                    <li data-step="1" data-i18n-html="instructions.step1"><strong>Descarga el archivo:</strong> Pulsa sobre cualquiera de las colecciones de arriba y guarda el archivo JSON en tu dispositivo (Google Drive abrirá el archivo, haz clic en descargar en la esquina superior derecha).</li>
+                    <li data-step="2" data-i18n-html="instructions.step2"><strong>Abre la aplicación:</strong> Ve a la pantalla principal de <em>Cocina con IA</em>.</li>
+                    <li data-step="3" data-i18n-html="instructions.step3"><strong>Ve a Opciones e Importa:</strong> Abre la pestaña <strong>Opciones</strong>, pulsa en <strong>Importar copia de seguridad</strong>, selecciona tu archivo JSON descargado. <strong>¡Importante!</strong> No selecciones la opción de "pisar/sustituir" recetas si te lo pregunta, ya que esto borraría las que ya tienes guardadas en la aplicación (elige la opción de combinar/añadir).</li>
                 </ul>
             </div>
         </section>
@@ -872,20 +883,18 @@
             const videoListContainer = document.getElementById('video-list');
 
             function loadVideo(videoId, element) {
-                // Cambia la URL del iframe al vídeo seleccionado y activa la reproducción automática
                 playerIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
                 
-                // Actualiza los estilos activos en la lista
                 document.querySelectorAll('.video-item').forEach(item => {
                     item.classList.remove('active');
                     const statusText = item.querySelector('.video-status');
-                    if (statusText) statusText.innerText = 'Ver videotutorial';
+                    if (statusText) statusText.innerText = window.i18n.t('video.watchTutorial');
                 });
                 
                 if (element) {
                     element.classList.add('active');
                     const statusText = element.querySelector('.video-status');
-                    if (statusText) statusText.innerText = 'Reproduciendo ahora';
+                    if (statusText) statusText.innerText = window.i18n.t('video.playingNow');
                 }
             }
 
@@ -897,21 +906,19 @@
                     item.className = 'video-item' + (index === 0 ? ' active' : '');
                     item.onclick = function() { loadVideo(video.id, this); };
                     
-                    // Miniatura por defecto de YouTube en resolución HQ
                     const thumbUrl = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
                     
                     item.innerHTML = `
                         <div class="video-thumbnail" style="background-image: url('${thumbUrl}')"></div>
                         <div class="video-info">
                             <div class="video-title">${video.title}</div>
-                            <div class="video-status">${index === 0 ? 'Reproduciendo ahora' : 'Ver videotutorial'}</div>
+                            <div class="video-status">${index === 0 ? window.i18n.t('video.playingNow') : window.i18n.t('video.watchTutorial')}</div>
                         </div>
                     `;
                     
                     videoListContainer.appendChild(item);
                 });
                 
-                // Carga inicial del primer vídeo (sin reproducir automáticamente de inicio)
                 if (playlist.length > 0) {
                     playerIframe.src = `https://www.youtube.com/embed/${playlist[0].id}?rel=0`;
                 }
@@ -937,37 +944,38 @@
 
             // Inicializar la carga dinámica cuando el DOM esté listo
             document.addEventListener('DOMContentLoaded', fetchDynamicPlaylist);
+            document.addEventListener('languageChanged', renderPlaylist);
         </script>
     </div>
 
     <section class="legal-section">
         <div class="container">
             <div class="legal-content">
-                <h2>Política de Privacidad</h2>
-                <p><em>Última actualización: 19 de Abril de 2026</em></p>
-                <p style="margin-top: 15px;">Esta aplicación móvil ha sido diseñada con la privacidad como prioridad. A continuación, se detalla el manejo de la información dentro de la aplicación.</p>
+                <h2 data-i18n="legal.title">Política de Privacidad</h2>
+                <p><em data-i18n="legal.updated">Última actualización: 19 de Abril de 2026</em></p>
+                <p style="margin-top: 15px;" data-i18n="legal.intro">Esta aplicación móvil ha sido diseñada con la privacidad como prioridad. A continuación, se detalla el manejo de la información dentro de la aplicación.</p>
 
-                <h4>1. Almacenamiento de Datos</h4>
-                <p><strong>Cocina con IA</strong> funciona de manera local. No recopilamos, transmitimos ni almacenamos ningún dato personal identificable en servidores externos. Toda la información introducida por el usuario (recetas, ingredientes, planes de comidas) se guarda exclusivamente en la memoria local del dispositivo.</p>
+                <h4 data-i18n="legal.s1.title">1. Almacenamiento de Datos</h4>
+                <p data-i18n-html="legal.s1.body"><strong>Cocina con IA</strong> funciona de manera local. No recopilamos, transmitimos ni almacenamos ningún dato personal identificable en servidores externos. Toda la información introducida por el usuario (recetas, ingredientes, planes de comidas) se guarda exclusivamente en la memoria local del dispositivo.</p>
 
-                <h4>2. Permisos y Uso</h4>
+                <h4 data-i18n="legal.s2.title">2. Permisos y Uso</h4>
                 <ul style="padding-left: 20px; margin-top: 10px; list-style-type: disc;">
-                    <li><strong>Cámara:</strong> Utilizada únicamente para el escaneo de códigos de barras de productos. La aplicación no captura ni almacena imágenes o vídeos del usuario sin su consentimiento explícito para una acción específica.</li>
-                    <li><strong>Calendario:</strong> Utilizado para que el usuario pueda, de forma opcional, añadir recordatorios o sesiones de cocina a su calendario personal.</li>
-                    <li><strong>Memoria Local:</strong> Necesaria para persistir los datos de la aplicación entre sesiones.</li>
+                    <li data-i18n-html="legal.s2.camera"><strong>Cámara:</strong> Utilizada únicamente para el escaneo de códigos de barras de productos. La aplicación no captura ni almacena imágenes o vídeos del usuario sin su consentimiento explícito para una acción específica.</li>
+                    <li data-i18n-html="legal.s2.calendar"><strong>Calendario:</strong> Utilizado para que el usuario pueda, de forma opcional, añadir recordatorios o sesiones de cocina a su calendario personal.</li>
+                    <li data-i18n-html="legal.s2.storage"><strong>Memoria Local:</strong> Necesaria para persistir los datos de la aplicación entre sesiones.</li>
                 </ul>
 
-                <h4>3. Servicios de Terceros</h4>
-                <p>Podemos utilizar herramientas de diagnóstico anónimas (como informes de fallos técnicos) con el único propósito de mejorar la estabilidad y el rendimiento de la aplicación.</p>
+                <h4 data-i18n="legal.s3.title">3. Servicios de Terceros</h4>
+                <p data-i18n="legal.s3.body">Podemos utilizar herramientas de diagnóstico anónimas (como informes de fallos técnicos) con el único propósito de mejorar la estabilidad y el rendimiento de la aplicación.</p>
 
-                <h4>4. Contacto</h4>
-                <p>Para dudas sobre la privacidad, contactar a través de los canales oficiales de soporte.</p>
+                <h4 data-i18n="legal.s4.title">4. Contacto</h4>
+                <p data-i18n="legal.s4.body">Para dudas sobre la privacidad, contactar a través de los canales oficiales de soporte.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">
+        <div class="container" data-i18n="footer.copyright">
             &copy; 2026 Cocina con IA. Todos los derechos reservados.
         </div>
     </footer>
@@ -976,37 +984,37 @@
     <!-- Modal: Recetas Anteriores -->
     <div id="past-recipes-modal" class="modal-overlay" onclick="handleModalOverlayClick(event)">
         <div class="modal-card" id="past-recipes-card">
-            <button class="modal-close" onclick="closePastRecipesModal()" aria-label="Cerrar">&#x2715;</button>
-            <h2>📚 Recetas Anteriores</h2>
-            <p class="intro">Todas las recetas cocinadas en directo, agrupadas por semana. ¡Descárgalas y ponlas en práctica!</p>
+            <button class="modal-close" onclick="closePastRecipesModal()" data-i18n-attr="aria-label:modal.close" aria-label="Cerrar">&#x2715;</button>
+            <h2 data-i18n="modal.title">📚 Recetas Anteriores</h2>
+            <p class="intro" data-i18n="modal.intro">Todas las recetas cocinadas en directo, agrupadas por semana. ¡Descárgalas y ponlas en práctica!</p>
 
             <!-- Semana 1 -->
             <div class="week-group">
                 <div class="week-title">
-                    <span>📅</span> Semana del 6 al 12 de junio de 2026
+                    <span>📅</span> <span data-i18n="modal.week1">Semana del 6 al 12 de junio de 2026</span>
                 </div>
                 <ul class="past-recipe-list">
                     <li class="past-recipe-item">
-                        <span class="past-recipe-name">🍗 Saltimbocca de pechuga de pollo con emulsión de mantequilla</span>
-                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1zvunfJY0EMUTodxIROxEgV-nUpHG_dcL/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                        <span class="past-recipe-name" data-i18n="modal.r1">🍗 Saltimbocca de pechuga de pollo con emulsión de mantequilla</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1zvunfJY0EMUTodxIROxEgV-nUpHG_dcL/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="modal.viewRecipe">
                             📄 Ver receta
                         </a>
                     </li>
                     <li class="past-recipe-item">
-                        <span class="past-recipe-name">🥔 Patatas bravas tradicional con salsa de pimentón</span>
-                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1_bK131EeKCdbM8nDlEi1BQgF3UpdSFNJ/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                        <span class="past-recipe-name" data-i18n="modal.r2">🥔 Patatas bravas tradicional con salsa de pimentón</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1_bK131EeKCdbM8nDlEi1BQgF3UpdSFNJ/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="modal.viewRecipe">
                             📄 Ver receta
                         </a>
                     </li>
                     <li class="past-recipe-item">
-                        <span class="past-recipe-name">🍚 Arroz frito con carne de cerdo y verduras al Wok</span>
-                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1kuRNsQMLAWSiLErqz27hOUvnUkC4wbd3/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                        <span class="past-recipe-name" data-i18n="modal.r3">🍚 Arroz frito con carne de cerdo y verduras al Wok</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1kuRNsQMLAWSiLErqz27hOUvnUkC4wbd3/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="modal.viewRecipe">
                             📄 Ver receta
                         </a>
                     </li>
                     <li class="past-recipe-item">
-                        <span class="past-recipe-name">🍝 Pasta carbonara tradicional</span>
-                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1nDrH5zc-nMXsQHCSTiNchrDvJxgSkgVr/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                        <span class="past-recipe-name" data-i18n="modal.r4">🍝 Pasta carbonara tradicional</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1nDrH5zc-nMXsQHCSTiNchrDvJxgSkgVr/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="modal.viewRecipe">
                             📄 Ver receta
                         </a>
                     </li>
@@ -1016,24 +1024,24 @@
             <!-- Semana 2 -->
             <div class="week-group">
                 <div class="week-title">
-                    <span>📅</span> Semana del 30 de mayo al 5 de junio de 2026
+                    <span>📅</span> <span data-i18n="modal.week2">Semana del 30 de mayo al 5 de junio de 2026</span>
                 </div>
                 <ul class="past-recipe-list">
                     <li class="past-recipe-item">
-                        <span class="past-recipe-name">🥧 Empanada de atún tradicional gallega</span>
-                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1Jhdfz59v-9DIGHGzzVpy86-hDzCBdK8q/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                        <span class="past-recipe-name" data-i18n="modal.r5">🥧 Empanada de atún tradicional gallega</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1Jhdfz59v-9DIGHGzzVpy86-hDzCBdK8q/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="modal.viewRecipe">
                             📄 Ver receta
                         </a>
                     </li>
                     <li class="past-recipe-item">
-                        <span class="past-recipe-name">🥩 Lomo de cerdo marinado con cítricos y espárragos a la plancha</span>
-                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1MY0vJdCYP7woADKL_d1KY1NApv5M5J__/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                        <span class="past-recipe-name" data-i18n="modal.r6">🥩 Lomo de cerdo marinado con cítricos y espárragos a la plancha</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1MY0vJdCYP7woADKL_d1KY1NApv5M5J__/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="modal.viewRecipe">
                             📄 Ver receta
                         </a>
                     </li>
                     <li class="past-recipe-item">
-                        <span class="past-recipe-name">🍖 Cerdo agridulce tradicional con control térmico</span>
-                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1yiwnNBU0BZbC6QhDrS2uo3aW30uOrO7A/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                        <span class="past-recipe-name" data-i18n="modal.r7">🍖 Cerdo agridulce tradicional con control térmico</span>
+                        <a class="past-recipe-download" href="https://drive.google.com/file/d/1yiwnNBU0BZbC6QhDrS2uo3aW30uOrO7A/view?usp=drive_link" target="_blank" rel="noopener noreferrer" data-i18n="modal.viewRecipe">
                             📄 Ver receta
                         </a>
                     </li>
