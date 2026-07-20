@@ -929,24 +929,42 @@
         <div class="container">
             <div class="legal-content">
                 <h2 data-i18n="legal.title">Política de Privacidad</h2>
-                <p><em data-i18n="legal.updated">Última actualización: 19 de Abril de 2026</em></p>
+                <p><em data-i18n="legal.updated">Última actualización: 20 de Julio de 2026</em></p>
                 <p style="margin-top: 15px;" data-i18n="legal.intro">Esta aplicación móvil ha sido diseñada con la privacidad como prioridad. A continuación, se detalla el manejo de la información dentro de la aplicación.</p>
 
                 <h4 data-i18n="legal.s1.title">1. Almacenamiento de Datos</h4>
-                <p data-i18n-html="legal.s1.body"><strong>Cocina con IA</strong> funciona de manera local. No recopilamos, transmitimos ni almacenamos ningún dato personal identificable en servidores externos. Toda la información introducida por el usuario (recetas, ingredientes, planes de comidas) se guarda exclusivamente en la memoria local del dispositivo.</p>
+                <p data-i18n-html="legal.s1.body"><strong>Cocina con IA</strong> funciona de manera local. No recopilamos, transmitimos ni almacenamos ningún dato personal identificable en servidores propios. Toda la información introducida por el usuario (recetas, ingredientes, planes de comidas, despensa, lista de la compra) se guarda exclusivamente en la memoria local del dispositivo mediante AsyncStorage.</p>
 
                 <h4 data-i18n="legal.s2.title">2. Permisos y Uso</h4>
                 <ul style="padding-left: 20px; margin-top: 10px; list-style-type: disc;">
-                    <li data-i18n-html="legal.s2.camera"><strong>Cámara:</strong> Utilizada únicamente para el escaneo de códigos de barras de productos. La aplicación no captura ni almacena imágenes o vídeos del usuario sin su consentimiento explícito para una acción específica.</li>
+                    <li data-i18n-html="legal.s2.camera"><strong>Cámara:</strong> Utilizada para el escaneo de códigos de barras de productos y para capturar fotos de recetas. Las fotos se procesan localmente y no se envían a ningún servidor. La aplicación no captura ni almacena imágenes sin su consentimiento explícito para una acción específica.</li>
+                    <li data-i18n-html="legal.s2.microphone"><strong>Micrófono:</strong> Utilizado para el dictado por voz de compras, ingredientes y fechas de caducidad. El reconocimiento de voz se realiza mediante los servicios del sistema (Google Speech Recognition) en el dispositivo. No se almacenan grabaciones de audio.</li>
                     <li data-i18n-html="legal.s2.calendar"><strong>Calendario:</strong> Utilizado para que el usuario pueda, de forma opcional, añadir recordatorios o sesiones de cocina a su calendario personal.</li>
-                    <li data-i18n-html="legal.s2.storage"><strong>Memoria Local:</strong> Necesaria para persistir los datos de la aplicación entre sesiones.</li>
+                    <li data-i18n-html="legal.s2.notifications"><strong>Notificaciones:</strong> Utilizadas para enviar recordatorios locales sobre el menú del día, caducidades de la despensa y lista de la compra. Las notificaciones se programan en el dispositivo y no se envían desde servidores externos.</li>
+                    <li data-i18n-html="legal.s2.storage"><strong>Memoria Local:</strong> Necesaria para persistir los datos de la aplicación entre sesiones, incluyendo copias de seguridad internas para prevenir pérdida de datos.</li>
                 </ul>
 
                 <h4 data-i18n="legal.s3.title">3. Servicios de Terceros</h4>
-                <p data-i18n="legal.s3.body">Podemos utilizar herramientas de diagnóstico anónimas (como informes de fallos técnicos) con el único propósito de mejorar la estabilidad y el rendimiento de la aplicación.</p>
+                <ul style="padding-left: 20px; margin-top: 10px; list-style-type: disc;">
+                    <li data-i18n-html="legal.s3.sentry"><strong>Sentry (informes de errores):</strong> Se utilizan informes anónimos de fallos técnicos para mejorar la estabilidad y el rendimiento de la aplicación. No se envía información personal identificable (PII). Las URLs, cookies, cabeceras y datos sensibles se filtran automáticamente antes de enviar cualquier reporte.</li>
+                    <li data-i18n-html="legal.s3.openfoodfacts"><strong>Open Food Facts:</strong> Al escanear un código de barras, la aplicación consulta la API pública de Open Food Facts para obtener información del producto (nombre, marca, imagen). Únicamente se envía el código de barras; no se envía ningún dato del usuario.</li>
+                    <li data-i18n-html="legal.s3.playbilling"><strong>Google Play Billing:</strong> Las compras dentro de la aplicación se procesan a través de Google Play. No tenemos acceso a los datos de pago del usuario; toda la información financiera es gestionada por Google.</li>
+                </ul>
 
-                <h4 data-i18n="legal.s4.title">4. Contacto</h4>
-                <p data-i18n="legal.s4.body">Para dudas sobre la privacidad, contactar a través de los canales oficiales de soporte.</p>
+                <h4 data-i18n="legal.s4.title">4. Exportación y Compartición de Datos</h4>
+                <p data-i18n-html="legal.s4.body">El usuario puede exportar sus datos (recetas, planificador, despensa) en formato JSON y compartirlos mediante aplicaciones de terceros (correo, mensajería, etc.). Esta acción es iniciada exclusivamente por el usuario y la aplicación no envía datos automáticamente a ningún servicio externo.</p>
+
+                <h4 data-i18n="legal.s5.title">5. Privacidad de Menores</h4>
+                <p data-i18n="legal.s5.body">Esta aplicación no está dirigida a menores de 13 años y no recopilamos conscientemente información personal de niños. Si cree que un menor nos ha proporcionado información, contacte con nosotros para su eliminación inmediata.</p>
+
+                <h4 data-i18n="legal.s6.title">6. Retención y Eliminación de Datos</h4>
+                <p data-i18n-html="legal.s6.body">Todos los datos se almacenan localmente en el dispositivo. Para eliminar toda la información, el usuario puede desinstalar la aplicación o utilizar la opción de borrado de datos dentro de la app. La desinstalación elimina permanentemente todos los datos locales.</p>
+
+                <h4 data-i18n="legal.s7.title">7. Cambios en Esta Política</h4>
+                <p data-i18n="legal.s7.body">Podemos actualizar esta política de privacidad periódicamente. Se recomienda revisar esta página regularmente para estar al tanto de cualquier cambio. La fecha de última actualización se indica en la parte superior.</p>
+
+                <h4 data-i18n="legal.s8.title">8. Contacto</h4>
+                <p data-i18n="legal.s8.body">Para dudas sobre la privacidad, contactar a través de los canales oficiales de soporte en la página de Google Play de la aplicación.</p>
             </div>
         </div>
     </section>
